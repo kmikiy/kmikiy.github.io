@@ -29,7 +29,7 @@ body {
 
 @font-face {
     font-family: "Cousine Regular";
-    src: url("https://github.com/kmikiy/kmikiy.github.io/blob/master/assets/fonts/Cousine-Regular.ttf?raw=true");
+    src: url("../fonts/Cousine-Regular.ttf");
 }
 
 .miklos-kristyan{
