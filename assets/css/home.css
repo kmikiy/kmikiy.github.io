@@ -1,0 +1,81 @@
+
+.kmikiy-section {
+    padding: 20px 10px 20px 10px;
+    color: #aaaaaa;
+    background: #121212;
+}
+@font-face {
+    font-family: "Ostrich Sans Light";
+    src: url("../fonts/ostrich-sans-light.ttf");
+}
+
+@font-face {
+    font-family: "Ostrich Sans Regular";
+    src: url("../fonts/ostrich-sans-regular.ttf");
+}
+
+@font-face {
+    font-family: "Cousine Regular";
+    src: url("../fonts/Cousine-regular.ttf");
+}
+
+.miklos-kristyan{
+    font-family: "Cousine Regular";
+    font-size: 3.25em;
+}
+
+section {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.soc-item {
+    padding: 0px 5px 0px 5px;
+}
+
+.socicon {
+    margin: 0px 5px 5px 5px;
+}
+
+.container {
+    width:100%;
+}
+
+.content-width {
+    display: inline-block;
+}
+
+.media-container-row {
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.social-media-container-row {
+    display: flex;
+    font-family: "Cousine Regular";
+}
+
+a, a:hover {
+    color: #149dcc;
+    text-decoration: none;
+}
+
+a {
+    font-style: normal;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+.center-content {
+    text-align: center;
+}
