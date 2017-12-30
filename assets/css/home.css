@@ -4,6 +4,19 @@
     color: #aaaaaa;
     background: #121212;
 }
+
+html {
+    background: #010101;
+    height: 100%
+}
+
+body {
+    background-image:url("https://github.com/kmikiy/SpotMenu/raw/master/assets/images/mbr-1-1620x1080.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    min-height: 100%;
+}
+
 @font-face {
     font-family: "Ostrich Sans Light";
     src: url("../fonts/ostrich-sans-light.ttf");
