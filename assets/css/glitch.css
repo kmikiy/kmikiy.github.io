@@ -76,10 +76,10 @@
   content: attr(data-text);
   position: absolute;
   left: 2px;
-  text-shadow: -15px 0 rgba(255,0,0,0.5);
+  text-shadow: -5px 0 rgba(255,0,0,0.5);
   top: 0;
   color: white;
-  background: black;
+  
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim 5s infinite linear alternate-reverse;
@@ -160,7 +160,7 @@
   text-shadow: 10px 0 rgba(0,0,255,0.5);
   top: 0;
   color: white;
-  background: black;
+  
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim-2 4s infinite linear alternate-reverse;
