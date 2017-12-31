@@ -9,10 +9,11 @@ html {
     background: #010101;
     height: 100%;
     box-sizing: border-box;
+    font-family: "Cousine Regular";
 }
 
 body {
-    background-image:url("https://github.com/kmikiy/SpotMenu/raw/master/assets/images/mbr-1-1620x1080.jpg");
+    background-image: url("https://github.com/kmikiy/SpotMenu/raw/master/assets/images/mbr-1-1620x1080.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
     min-height: 100%;
@@ -36,16 +37,22 @@ body {
     src: url("../fonts/Cousine-Regular.ttf");
 }
 
-.miklos-kristyan{
+@font-face {
+    font-family: "Cousine Bold";
+    src: url("../fonts/Cousine-Bold.ttf");
+}
+
+.miklos-kristyan {
     font-family: "Cousine Regular";
     font-size: 3.25em;
     padding: 0px 5px 0px 5px;
+    color: #fefefefe;
+    text-shadow: -5px 5px 15px rgba(21, 20, 20, 0.5);
 }
 
 section {
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    padding-top:4em;
+    padding-top: 4em;
+    padding-bottom: 4em;
 }
 
 .soc-item {
@@ -105,9 +112,26 @@ a {
     text-align: center;
 }
 
-  
 *,
 *:before,
 *:after {
 box-sizing: inherit;
+}
+
+.info-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px 20px 20px;
+}
+
+.info-content {
+    max-width: 720px;
+    flex-grow: 1;
+}
+
+.info-title {
+    font-family: "Cousine Bold";
+    font-size: 2em;
+    color: #fefefefe;
+    text-shadow: -2px 2px 11px rgba(122, 122, 122, 0.5)
 }
