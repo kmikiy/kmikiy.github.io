@@ -1,0 +1,76 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Senior Backend Engineer helping startups build and scale their products. Golang, PostgreSQL, and distributed systems." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Theme initialization (prevents flash) -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+  </head>
+  <body>
+    <div class="bg-gradient"></div>
+    <slot />
+
+    <script>
+      function initTheme() {
+        const toggle = document.getElementById('theme-toggle');
+        if (!toggle) return;
+
+        toggle.addEventListener('click', () => {
+          const html = document.documentElement;
+          const current = html.getAttribute('data-theme');
+          const next = current === 'dark' ? 'light' : 'dark';
+          html.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          updateIcon(next);
+        });
+
+        function updateIcon(theme: string) {
+          const sunIcon = toggle.querySelector('.sun-icon');
+          const moonIcon = toggle.querySelector('.moon-icon');
+          if (sunIcon && moonIcon) {
+            sunIcon.setAttribute('style', theme === 'dark' ? 'display: block' : 'display: none');
+            moonIcon.setAttribute('style', theme === 'dark' ? 'display: none' : 'display: block');
+          }
+        }
+
+        updateIcon(document.documentElement.getAttribute('data-theme') || 'light');
+      }
+
+      initTheme();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>
