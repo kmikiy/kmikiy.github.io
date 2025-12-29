@@ -35,7 +35,10 @@ const projects = [
 <Layout title="Miklós Kristyán - Software Developer">
   <header class="header">
     <div class="container header-content">
-      <div class="logo">MK</div>
+      <div class="logo">
+        <span class="logo-short">MK</span>
+        <span class="logo-full">Miklós Kristyán</span>
+      </div>
       <ThemeToggle />
     </div>
   </header>
@@ -47,6 +50,15 @@ const projects = [
         <p class="role">Senior Backend Engineer</p>
         <p class="tagline">Helping startups go from zero to production</p>
         <p class="credential">MSc Computer Engineering</p>
+        <div class="tech-stack">
+          <span class="tech">Go</span>
+          <span class="tech">PostgreSQL</span>
+          <span class="tech">AWS</span>
+          <span class="tech">React</span>
+          <span class="tech">NestJS</span>
+          <span class="tech">Swift</span>
+          <span class="tech">macOS</span>
+        </div>
         <div class="social-links">
           <a
             href="https://linkedin.com/in/mikl%C3%B3s-kristy%C3%A1n-77a8a943"
@@ -74,7 +86,7 @@ const projects = [
             </svg>
             GitHub
           </a>
-          <a href="mailto:mikloskristyan@gmail.com" class="social-link">
+          <a href="mailto:m.kristyan@gmail.com" class="social-link">
             <svg
               width="20"
               height="20"
@@ -128,6 +140,7 @@ const projects = [
   }
 
   .logo {
+    position: relative;
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-text);
@@ -137,6 +150,56 @@ const projects = [
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     padding: 10px 16px;
+    cursor: default;
+    min-width: 52px;
+    transition: min-width 0.2s ease;
+  }
+
+  .logo-short {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .logo-full {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    border-right: 2px solid var(--color-text);
+  }
+
+  .logo:hover {
+    min-width: 195px;
+  }
+
+  .logo:hover .logo-short {
+    visibility: hidden;
+  }
+
+  .logo:hover .logo-full {
+    opacity: 1;
+    animation:
+      typewriter 0.5s steps(16) forwards,
+      blink 0.6s step-end infinite;
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 148px;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
   }
 
   .main {
@@ -179,7 +242,23 @@ const projects = [
     font-size: 0.8125rem;
     color: var(--color-text-secondary);
     opacity: 0.6;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
+  }
+
+  .tech-stack {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .tech {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    background: var(--color-border);
+    border-radius: 6px;
+    color: var(--color-text-secondary);
   }
 
   .social-links {
