@@ -24,16 +24,15 @@ const { title, description = "Senior Backend Engineer helping startups build and
 
     <!-- Theme initialization (prevents flash) -->
     <script is:inline>
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-        return 'light';
-      })();
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      const savedPref = typeof localStorage !== 'undefined' ? localStorage.getItem('theme-preference') : null;
+      const preference = savedPref || 'auto';
+      const theme = preference === 'auto' ? getSystemTheme() : preference;
       document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-preference', preference);
     </script>
   </head>
   <body>
@@ -45,25 +44,47 @@ const { title, description = "Senior Backend Engineer helping startups build and
         const toggle = document.getElementById('theme-toggle');
         if (!toggle) return;
 
-        toggle.addEventListener('click', () => {
-          const html = document.documentElement;
-          const current = html.getAttribute('data-theme');
-          const next = current === 'dark' ? 'light' : 'dark';
-          html.setAttribute('data-theme', next);
-          localStorage.setItem('theme', next);
-          updateIcon(next);
-        });
+        function getSystemTheme(): string {
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
 
-        function updateIcon(theme: string) {
+        function applyTheme(preference: string) {
+          const theme = preference === 'auto' ? getSystemTheme() : preference;
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.setAttribute('data-preference', preference);
+          localStorage.setItem('theme-preference', preference);
+          updateIcon(preference);
+        }
+
+        function updateIcon(preference: string) {
           const sunIcon = toggle.querySelector('.sun-icon');
           const moonIcon = toggle.querySelector('.moon-icon');
-          if (sunIcon && moonIcon) {
-            sunIcon.setAttribute('style', theme === 'dark' ? 'display: block' : 'display: none');
-            moonIcon.setAttribute('style', theme === 'dark' ? 'display: none' : 'display: block');
+          const autoIcon = toggle.querySelector('.auto-icon');
+
+          if (sunIcon && moonIcon && autoIcon) {
+            sunIcon.setAttribute('style', preference === 'light' ? 'display: block' : 'display: none');
+            moonIcon.setAttribute('style', preference === 'dark' ? 'display: block' : 'display: none');
+            autoIcon.setAttribute('style', preference === 'auto' ? 'display: block' : 'display: none');
           }
         }
 
-        updateIcon(document.documentElement.getAttribute('data-theme') || 'light');
+        toggle.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-preference') || 'auto';
+          const next = current === 'auto' ? 'light' : current === 'light' ? 'dark' : 'auto';
+          applyTheme(next);
+        });
+
+        // Listen for system theme changes when in auto mode
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+          const preference = document.documentElement.getAttribute('data-preference');
+          if (preference === 'auto') {
+            document.documentElement.setAttribute('data-theme', getSystemTheme());
+          }
+        });
+
+        // Initialize icon based on current preference
+        const currentPref = document.documentElement.getAttribute('data-preference') || 'auto';
+        updateIcon(currentPref);
       }
 
       initTheme();
